@@ -131,7 +131,37 @@ td.acoes .botao { margin-right: .3rem; }
     color: #b3402a;
     font-size: .9rem;
 }
-.formulario input.campo-erro {
+.formulario input.campo-erro  {
     border-color: #b3402a;
     background: #fdf1ef;
-}
+    .formulario input[type=number],
+    .formulario select {
+        width: 100%;
+        padding: .55rem;
+        font: inherit;
+        border: 2px solid var(--madeira);
+        background: #fff;
+    }
+    .formulario select.campo-erro {
+        border-color: #b3402a;
+        background: #fdf1ef;
+    }
+    /* Menu de navegação (fragment menu) */
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .4rem;
+        padding: .6rem 1rem;
+        background: var(--madeira);
+    }
+    .menu a {
+        padding: .35rem 1rem;
+        color: var(--papel);
+        text-decoration: none;
+        border: 2px solid transparent;
+    }
+    .menu a:hover { border-color: var(--dourado); }
+    .menu a.ativo { background: var(--verde); border-color: var(--dourado);
+    }
+
