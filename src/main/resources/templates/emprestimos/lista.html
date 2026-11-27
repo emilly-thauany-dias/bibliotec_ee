@@ -1,0 +1,42 @@
+<head th:replace="~{fragments/layout :: cabeca('Empréstimos')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu('emprestimos')}"></nav>
+<h1>Empréstimos</h1>
+<p class="barra">
+    <a class="botao" th:href="@{/emprestimos/novo}">Novo empréstimo</a>
+</p>
+<p class="mensagem" th:if="${mensagem}" th:text="${mensagem}">Mensagem</p>
+<p class="erro" th:if="${erro}" th:text="${erro}">Erro</p>
+<p class="vazio" th:if="${#lists.isEmpty(emprestimos)}">Nenhum empréstimo registrado.</p>
+
+<table th:unless="${#lists.isEmpty(emprestimos)}">
+    <caption>Empréstimos da biblioteca</caption>
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Livro</th>
+        <th scope="col">Leitor</th>
+        <th scope="col">Emprestado em</th>
+        <th scope="col">Devolução prevista</th>
+        <th scope="col">Devolvido em</th>
+        <th scope="col">Status</th>
+        <th scope="col">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${emprestimos}">
+        <td th:text="${e.id}">1</td>
+        <td th:text="${e.livro.titulo}">Dom Casmurro</td>
+        <td th:text="${e.leitor.nome}">Ana Souza</td>
+        <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}">01/11/2026</td>
+        <td th:text="${#temporals.format(e.dataPrevistaDevolucao, 'dd/MM/yyyy')}">08/11/2026</td>
+        <td th:text="${e.dataDevolucao != null} ? ${#temporals.format(e.dataDevolucao, 'dd/MM/yyyy')} : '—'">—</td>
+        <td th:text="${e.status.rotulo}">Ativo</td>
+        <td class="acoes">
+            <!-- Botão Devolver: parte autônoma do Bloco 3 -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
